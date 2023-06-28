@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Train;
+use Faker\Generator as Faker;
 
 class TrainTableSeeder extends Seeder
 {
@@ -13,16 +14,20 @@ class TrainTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        $t = new Train();
-        $t->agency = "Ciaone";
-        $t->start_station = "Bologna";
-        $t->end_station = "Puglia";
-        $t->code = 568;
-        $t->n_cab = 70;
-        $t->in_time = false;
-        $t->agency = true;
-        $t->save();
+        for ($i = 0; $i < 100; $i++) {
+            Train::create([
+                'agency' => $faker->company(),
+                'start_station' => $faker->city(),
+                'end_station' => $faker->city(),
+                'start_time' => $faker->date(),
+                'end_time' => $faker->date(),
+                'code' => rand(1, 300),
+                'n_cab' => rand(1, 100),
+                'in_time' => $faker->boolean(),
+                'deleted' => $faker->boolean(),
+            ]);
+        }
     }
 }

@@ -8,6 +8,26 @@
     </head>
     <body>
         <h1 class="text-center">Ciao da vite</h1>
-        {{-- <img src="{{ Vite::asset('resources/img/picsum30.jpg') }}" alt=""> --}}
+        <div class="container d-flex flex-wrap">
+            @foreach ($trains as $item)
+            @if ($item["start_time"] == date("Y-m-d"))
+                <div class="card m-auto mb-3" style="width: 18rem;">
+                    <div class="card-header">
+                    {{ $item['agency'] }}
+                    </div>
+                    <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ $item['start_station'] }}</li>
+                    <li class="list-group-item">{{ $item['end_station'] }}</li>
+                    <li class="list-group-item">{{ $item['start_time'] }}</li>
+                    <li class="list-group-item">{{ $item['end_time'] }}</li>
+                    <li class="list-group-item">{{ $item['code'] }}</li>
+                    <li class="list-group-item">{{ $item['n_cab'] }}</li>
+                    <li class="list-group-item">{{ $item['in_time'] }}</li>
+                    <li class="list-group-item">{{ $item['deleted'] }}</li>
+                    </ul>
+                </div>
+            @endif
+            @endforeach
+        </div>
     </body>
 </html>

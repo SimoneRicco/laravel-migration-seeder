@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('train', function (Blueprint $table) {
+        Schema::create('trains', function (Blueprint $table) {
             $table->id();
             $table->string("agency", 50);
             $table->string("start_station", 50);
             $table->string("end_station", 50);
-            // $table->dateTime("start_time");
-            // $table->dateTime("end_time");
+            $table->date("start_time");
+            $table->date("end_time");
             $table->integer('code');
             $table->tinyInteger("n_cab");
             $table->boolean("in_time");
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('train');
+        Schema::dropIfExists('trains');
     }
 };
